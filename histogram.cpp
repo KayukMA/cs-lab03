@@ -3,22 +3,28 @@
 #include <iostream>
 using namespace std;
 
-void find_minmax(const vector<double>& numbers, double& min, double& max, size_t number_count)
+struct Input
 {
-    int p=numbers.size();
+    vector<double> numbers;
+    size_t bin_count;
+};
+
+void find_minmax(struct Input Input, double& min, double& max)
+{
+    int p=Input.numbers.size();
     if(p!=0)
         {
-            min = numbers[0];
-            max = numbers[0];
-            for (size_t i=0; i<number_count; i++)
+            min = Input.numbers[0];
+            max = Input.numbers[0];
+            for (double number : Input.numbers)
                 {
-                    if (numbers[i] < min)
+                    if (number < min)
                     {
-                        min = numbers[i];
+                        min = number;
                     }
-                    if (numbers[i] > max)
+                    if (number > max)
                         {
-                            max = numbers[i];
+                            max = number;
                         }
                 }
         }

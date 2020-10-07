@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1602060854 source:c:\users\dell\desktop\cs-lab03\histogram.cpp
+1602065413 source:c:\users\dell\desktop\cs-lab03\histogram.cpp
 	"histogram.h"
 	<vector>
 	<iostream>
 
-1602060854 c:\users\dell\desktop\cs-lab03\histogram.h
+1602065413 c:\users\dell\desktop\cs-lab03\histogram.h
 	<string>
 	<vector>
 
