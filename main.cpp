@@ -144,6 +144,8 @@ download(const string& address)
 
 int main(int argc, char* argv[])
 {
+    printf("WinVersion  %x\n", GetVersion());
+    printf("WinVersion  %u\n", GetVersion());
     Input input;
     if(argc>1)
     {
