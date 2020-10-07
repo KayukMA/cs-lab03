@@ -2,7 +2,7 @@
 #include "svg.h"
 #include <iostream>
 #include <vector>
-
+#include 
 using namespace std;
 
 struct Input
@@ -104,7 +104,7 @@ read_input(istream&in, bool prompt)
 }
 int main()
 {
-    const auto Input=read_input(cin);
+    const auto Input=read_input(cin, true);
     const auto bins=make_histogram(Input);
     show_histogram_svg(bins);
     return 0;
