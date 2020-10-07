@@ -121,6 +121,7 @@ Input
 download(const string& address)
 {
     stringstream buffer;
+    char *ip;
     CURL* curl =curl_easy_init();
    if(curl)
    {
@@ -134,17 +135,15 @@ download(const string& address)
                 cout << curl_easy_strerror(curl_easy_perform(curl));
                 exit(1);
             }
+        curl_easy_getinfo(curl, CURLINFO_PRIMARY_IP, &ip);
+        cerr << "IP:" << ip;
         curl_easy_cleanup(curl);
    }
     return read_input(buffer, false);
 }
 
 int main(int argc, char* argv[])
-{int printf(const char* format, ...);
-    const char* name = "Commander Shepard";
-    int year = 2154;
-    printf("%s was born in %d.\n", name, year);
-    printf("n = %08x\n", 0x1234567);
+{
     Input input;
     if(argc>1)
     {
