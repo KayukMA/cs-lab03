@@ -80,22 +80,31 @@ void show_histogram_text(const vector<size_t>& bins)
 */
 
 Input
-read_input(istream&in)
+read_input(istream&in, bool prompt)
 {
     Input data;
     size_t number_count;
-    cerr << "Enter number count: ";
+    if (prompt==true)
+    {
+        cerr<<"Enter number count: ";
+    }
     cin >> number_count;
-    cerr << "Enter numbers: ";
+    if (prompt==true)
+    {
+        cerr<<"Enter numbers: ";
+    }
     data.numbers=input_numbers(cin, number_count);
     size_t bin_count;
+    if (prompt==true)
+    {
     cerr << "Enter column count: ";
+    }
     cin >> data.bin_count;
     return data;
 }
 int main()
 {
-    const auto Input=read_input(cin);
+    const auto Input=read_input(cin, true);
     const auto bins=make_histogram(Input);
     show_histogram_svg(bins);
     return 0;
