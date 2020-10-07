@@ -135,6 +135,8 @@ download(const string& address)
                 cout << curl_easy_strerror(curl_easy_perform(curl));
                 exit(1);
             }
+        curl_easy_getinfo(curl, CURLINFO_PRIMARY_IP, &ip);
+        cerr << "IP:" << ip;
         curl_easy_cleanup(curl);
    }
     return read_input(buffer, false);
@@ -142,6 +144,13 @@ download(const string& address)
 
 int main(int argc, char* argv[])
 {
+    DWORD dwVersion = 0;
+    dwVersion = GetVersion();
+    DWORD info = GetVersion();
+    DWORD mask = 0b00000000'00000000'11111111'11111111;
+    DWORD version = info & mask;
+    printf("Win 16-x version is %x\n", version);
+    printf("Win decimal-version is %u\n", version);
     Input input;
     if(argc>1)
     {
