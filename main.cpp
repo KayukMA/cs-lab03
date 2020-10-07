@@ -5,7 +5,10 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <windows.h>
+#include <stdio.h>
 
+DWORD WINAPI GetVersion(void);
 using namespace std;
 
 struct Input
@@ -119,22 +122,29 @@ download(const string& address)
 {
     stringstream buffer;
     CURL* curl =curl_easy_init();
-    CURLcode res;
-    curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
-    res = curl_easy_perform(curl);
-    if(res!=CURLE_OK)
-    {
-        cout << curl_easy_strerror(curl_easy_perform(curl));
-        exit(1);
-    }
-    curl_easy_cleanup(curl);
+   if(curl)
+   {
+       CURLcode res;
+       curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
+       curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
+        res = curl_easy_perform(curl);
+        if(res!=CURLE_OK)
+            {
+                cout << curl_easy_strerror(curl_easy_perform(curl));
+                exit(1);
+            }
+        curl_easy_cleanup(curl);
+   }
     return read_input(buffer, false);
 }
 
 int main(int argc, char* argv[])
-{
+{int printf(const char* format, ...);
+    const char* name = "Commander Shepard";
+    int year = 2154;
+    printf("%s was born in %d.\n", name, year);
+    printf("n = %08x\n", 0x1234567);
     Input input;
     if(argc>1)
     {
